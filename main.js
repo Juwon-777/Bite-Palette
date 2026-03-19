@@ -1,11 +1,25 @@
 const generateBtn = document.getElementById('generateBtn');
 const clearBtn = document.getElementById('clearBtn');
+const themeToggle = document.getElementById('themeToggle');
 const resultArea = document.getElementById('result-area');
 const historyArea = document.getElementById('historyArea');
 const roundBtns = document.querySelectorAll('.round-btn');
 
 let selectedCount = 1;
 let history = JSON.parse(localStorage.getItem('lottoHistory') || '[]');
+
+// ── 테마 토글 ──
+const savedTheme = localStorage.getItem('lottoTheme') || 'dark';
+if (savedTheme === 'light') {
+  document.body.classList.add('light');
+  themeToggle.textContent = '☀️';
+}
+
+themeToggle.addEventListener('click', () => {
+  const isLight = document.body.classList.toggle('light');
+  themeToggle.textContent = isLight ? '☀️' : '🌙';
+  localStorage.setItem('lottoTheme', isLight ? 'light' : 'dark');
+});
 
 // 게임 수 선택
 roundBtns.forEach(btn => {
