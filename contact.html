@@ -3,187 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>제휴 문의 | Bite Palette</title>
+  <title>제휴 문의 | LuckoPick</title>
+  <meta name="description" content="LuckoPick 제휴, 광고, 파트너십 문의 페이지입니다.">
   <meta name="google-adsense-account" content="ca-pub-3804672818794916">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3804672818794916"
      crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-      --text: #fff;
-      --text-muted: rgba(255,255,255,0.6);
-      --card-bg: rgba(255,255,255,0.08);
-      --card-border: rgba(255,255,255,0.12);
-      --input-bg: rgba(255,255,255,0.07);
-      --input-border: rgba(255,255,255,0.18);
-      --input-focus: #a29bfe;
-      --label: rgba(255,255,255,0.75);
-      --placeholder: rgba(255,255,255,0.3);
-      --btn-bg: linear-gradient(135deg, #a29bfe, #6c5ce7);
-      --btn-shadow: rgba(108,92,231,0.45);
-      --back-color: rgba(255,255,255,0.5);
-      --theme-btn-bg: rgba(255,255,255,0.1);
-      --theme-btn-border: rgba(255,255,255,0.2);
-      --success-bg: rgba(102,187,106,0.15);
-      --success-border: rgba(102,187,106,0.4);
-      --success-text: #a5d6a7;
-    }
-
-    body.light {
-      --bg: linear-gradient(135deg, #e8eaf6 0%, #e3f2fd 50%, #f3e5f5 100%);
-      --text: #1a1a2e;
-      --text-muted: rgba(0,0,0,0.55);
-      --card-bg: rgba(255,255,255,0.8);
-      --card-border: rgba(0,0,0,0.08);
-      --input-bg: rgba(0,0,0,0.04);
-      --input-border: rgba(0,0,0,0.15);
-      --input-focus: #6c5ce7;
-      --label: rgba(0,0,0,0.7);
-      --placeholder: rgba(0,0,0,0.3);
-      --btn-bg: linear-gradient(135deg, #a29bfe, #6c5ce7);
-      --btn-shadow: rgba(108,92,231,0.3);
-      --back-color: rgba(0,0,0,0.45);
-      --theme-btn-bg: rgba(0,0,0,0.07);
-      --theme-btn-border: rgba(0,0,0,0.15);
-      --success-bg: rgba(56,142,60,0.1);
-      --success-border: rgba(56,142,60,0.3);
-      --success-text: #2e7d32;
-    }
-
-    body {
-      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
-      background: var(--bg);
-      min-height: 100vh;
-      padding: 20px;
-      color: var(--text);
-      transition: background 0.35s, color 0.35s;
-    }
-
-    .container {
-      max-width: 540px;
-      margin: 0 auto;
-    }
-
-    /* 헤더 */
-    header {
-      padding: 28px 0 24px;
-    }
-
-    .header-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-
-    .back-link {
-      font-size: 0.9rem;
-      color: var(--back-color);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: color 0.2s;
-    }
-
-    .back-link:hover { color: var(--text); }
-
-    header h1 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      text-align: center;
-    }
-
-    .theme-toggle {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 1px solid var(--theme-btn-border);
-      background: var(--theme-btn-bg);
-      font-size: 1.1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.2s;
-    }
-
-    .theme-toggle:hover { transform: rotate(20deg) scale(1.1); }
-
-    .subtitle {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-top: 4px;
-    }
-
-    /* 카드 */
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 28px;
-      transition: background 0.35s, border-color 0.35s;
-    }
-
-    /* 폼 */
-    .form-group {
-      margin-bottom: 18px;
-    }
-
+    .form-group { margin-bottom: 18px; }
     label {
       display: block;
       font-size: 0.85rem;
       font-weight: 600;
-      color: var(--label);
+      color: var(--text-color);
+      opacity: 0.8;
       margin-bottom: 7px;
     }
-
-    label .required {
-      color: #f7b731;
-      margin-left: 3px;
-    }
-
+    label .required { color: #f7b731; margin-left: 3px; }
     input, select, textarea {
       width: 100%;
       padding: 12px 14px;
-      background: var(--input-bg);
-      border: 1px solid var(--input-border);
+      background: var(--round-btn-bg);
+      border: 1px solid var(--round-btn-border);
       border-radius: 10px;
-      color: var(--text);
+      color: var(--text-color);
       font-size: 0.95rem;
       font-family: inherit;
       outline: none;
       transition: border-color 0.2s, background 0.2s;
     }
-
-    input::placeholder, textarea::placeholder {
-      color: var(--placeholder);
-    }
-
+    input::placeholder, textarea::placeholder { color: var(--text-muted); }
     input:focus, select:focus, textarea:focus {
-      border-color: var(--input-focus);
+      border-color: #a29bfe;
       background: rgba(162,155,254,0.08);
     }
-
-    select option {
-      background: #1a1a2e;
-      color: #fff;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    /* 제출 버튼 */
+    select option { background: #1a1a2e; color: #fff; }
+    textarea { resize: vertical; min-height: 120px; }
     .submit-btn {
       width: 100%;
       padding: 15px;
-      background: var(--btn-bg);
+      background: linear-gradient(135deg, #a29bfe, #6c5ce7);
       border: none;
       border-radius: 14px;
       color: #fff;
@@ -191,40 +50,25 @@
       font-weight: 700;
       cursor: pointer;
       margin-top: 6px;
-      box-shadow: 0 6px 20px var(--btn-shadow);
+      box-shadow: 0 6px 20px rgba(108,92,231,0.4);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px var(--btn-shadow);
-    }
-
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(108,92,231,0.5); }
     .submit-btn:active { transform: translateY(0); }
-
-    .submit-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* 성공 메시지 */
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
     .success-msg {
       display: none;
-      background: var(--success-bg);
-      border: 1px solid var(--success-border);
+      background: rgba(102,187,106,0.15);
+      border: 1px solid rgba(102,187,106,0.4);
       border-radius: 12px;
       padding: 18px;
       text-align: center;
-      color: var(--success-text);
+      color: #a5d6a7;
       margin-top: 16px;
       font-weight: 600;
       font-size: 0.95rem;
     }
-
     .success-msg.show { display: block; }
-
-    /* 안내 문구 */
     .notice {
       font-size: 0.78rem;
       color: var(--text-muted);
@@ -235,13 +79,22 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="header-top">
-        <a href="index.html" class="back-link">← 홈으로</a>
-        <h1>🤝 제휴 문의</h1>
-        <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">🌙</button>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">🍀 LuckoPick</a>
+      <div class="nav-links">
+        <a href="index.html">번호 생성</a>
+        <a href="about.html">소개</a>
+        <a href="contact.html" class="active">제휴 문의</a>
       </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">🌙</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header class="hero">
+      <h1>🤝 제휴 문의</h1>
       <p class="subtitle">파트너십 및 광고 문의는 아래 양식을 작성해 주세요.</p>
     </header>
 
@@ -285,9 +138,8 @@
           <textarea name="message" placeholder="제휴 목적, 제안 내용, 예산 등을 자유롭게 작성해 주세요." required></textarea>
         </div>
 
-        <!-- Formspree 스팸 방지 -->
         <input type="text" name="_gotcha" style="display:none">
-        <input type="hidden" name="_subject" value="[Bite Palette] 새 제휴 문의가 도착했습니다">
+        <input type="hidden" name="_subject" value="[LuckoPick] 새 제휴 문의가 도착했습니다">
 
         <button type="submit" class="submit-btn" id="submitBtn">문의 보내기 ✉️</button>
       </form>
@@ -297,28 +149,23 @@
         빠른 시일 내에 답변 드리겠습니다.
       </div>
 
-      <p class="notice">
-        보내주신 정보는 제휴 검토 목적으로만 사용되며<br>
-        제3자에게 제공되지 않습니다.
-      </p>
+      <p class="notice">보내주신 정보는 제휴 검토 목적으로만 사용되며 제3자에게 제공되지 않습니다.</p>
     </div>
   </div>
 
-  <script>
-    // 테마 토글
-    const themeToggle = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('lottoTheme') || 'dark';
-    if (savedTheme === 'light') {
-      document.body.classList.add('light');
-      themeToggle.textContent = '☀️';
-    }
-    themeToggle.addEventListener('click', () => {
-      const isLight = document.body.classList.toggle('light');
-      themeToggle.textContent = isLight ? '☀️' : '🌙';
-      localStorage.setItem('lottoTheme', isLight ? 'light' : 'dark');
-    });
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="about.html">서비스 소개</a>
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="contact.html">제휴 문의</a>
+      </div>
+      <p class="footer-copy">© 2024 LuckoPick. 본 사이트는 오락 목적으로 제공되며, 과도한 복권 구매를 권장하지 않습니다.</p>
+    </div>
+  </footer>
 
-    // 폼 제출 (AJAX)
+  <script src="main.js"></script>
+  <script>
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     const successMsg = document.getElementById('successMsg');
@@ -327,14 +174,12 @@
       e.preventDefault();
       submitBtn.disabled = true;
       submitBtn.textContent = '전송 중...';
-
       try {
         const res = await fetch(form.action, {
           method: 'POST',
           body: new FormData(form),
           headers: { 'Accept': 'application/json' }
         });
-
         if (res.ok) {
           form.style.display = 'none';
           successMsg.classList.add('show');
