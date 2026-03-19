@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>제휴 문의 | Bite Palette</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      --text: #fff;
+      --text-muted: rgba(255,255,255,0.6);
+      --card-bg: rgba(255,255,255,0.08);
+      --card-border: rgba(255,255,255,0.12);
+      --input-bg: rgba(255,255,255,0.07);
+      --input-border: rgba(255,255,255,0.18);
+      --input-focus: #a29bfe;
+      --label: rgba(255,255,255,0.75);
+      --placeholder: rgba(255,255,255,0.3);
+      --btn-bg: linear-gradient(135deg, #a29bfe, #6c5ce7);
+      --btn-shadow: rgba(108,92,231,0.45);
+      --back-color: rgba(255,255,255,0.5);
+      --theme-btn-bg: rgba(255,255,255,0.1);
+      --theme-btn-border: rgba(255,255,255,0.2);
+      --success-bg: rgba(102,187,106,0.15);
+      --success-border: rgba(102,187,106,0.4);
+      --success-text: #a5d6a7;
+    }
+
+    body.light {
+      --bg: linear-gradient(135deg, #e8eaf6 0%, #e3f2fd 50%, #f3e5f5 100%);
+      --text: #1a1a2e;
+      --text-muted: rgba(0,0,0,0.55);
+      --card-bg: rgba(255,255,255,0.8);
+      --card-border: rgba(0,0,0,0.08);
+      --input-bg: rgba(0,0,0,0.04);
+      --input-border: rgba(0,0,0,0.15);
+      --input-focus: #6c5ce7;
+      --label: rgba(0,0,0,0.7);
+      --placeholder: rgba(0,0,0,0.3);
+      --btn-bg: linear-gradient(135deg, #a29bfe, #6c5ce7);
+      --btn-shadow: rgba(108,92,231,0.3);
+      --back-color: rgba(0,0,0,0.45);
+      --theme-btn-bg: rgba(0,0,0,0.07);
+      --theme-btn-border: rgba(0,0,0,0.15);
+      --success-bg: rgba(56,142,60,0.1);
+      --success-border: rgba(56,142,60,0.3);
+      --success-text: #2e7d32;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--text);
+      transition: background 0.35s, color 0.35s;
+    }
+
+    .container {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* 헤더 */
+    header {
+      padding: 28px 0 24px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .back-link {
+      font-size: 0.9rem;
+      color: var(--back-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--text); }
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--theme-btn-border);
+      background: var(--theme-btn-bg);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .theme-toggle:hover { transform: rotate(20deg) scale(1.1); }
+
+    .subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    /* 카드 */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: background 0.35s, border-color 0.35s;
+    }
+
+    /* 폼 */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--label);
+      margin-bottom: 7px;
+    }
+
+    label .required {
+      color: #f7b731;
+      margin-left: 3px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--placeholder);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--input-focus);
+      background: rgba(162,155,254,0.08);
+    }
+
+    select option {
+      background: #1a1a2e;
+      color: #fff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* 제출 버튼 */
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--btn-bg);
+      border: none;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 6px;
+      box-shadow: 0 6px 20px var(--btn-shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px var(--btn-shadow);
+    }
+
+    .submit-btn:active { transform: translateY(0); }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* 성공 메시지 */
+    .success-msg {
+      display: none;
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      color: var(--success-text);
+      margin-top: 16px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .success-msg.show { display: block; }
+
+    /* 안내 문구 */
+    .notice {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-top">
+        <a href="index.html" class="back-link">← 홈으로</a>
+        <h1>🤝 제휴 문의</h1>
+        <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">🌙</button>
+      </div>
+      <p class="subtitle">파트너십 및 광고 문의는 아래 양식을 작성해 주세요.</p>
+    </header>
+
+    <div class="card">
+      <form id="contactForm" action="https://formspree.io/f/xyknognn" method="POST">
+
+        <div class="form-group">
+          <label>담당자 이름 <span class="required">*</span></label>
+          <input type="text" name="name" placeholder="홍길동" required>
+        </div>
+
+        <div class="form-group">
+          <label>이메일 <span class="required">*</span></label>
+          <input type="email" name="email" placeholder="example@company.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>회사 / 브랜드명</label>
+          <input type="text" name="company" placeholder="(주)회사명">
+        </div>
+
+        <div class="form-group">
+          <label>연락처</label>
+          <input type="tel" name="phone" placeholder="010-0000-0000">
+        </div>
+
+        <div class="form-group">
+          <label>문의 유형 <span class="required">*</span></label>
+          <select name="type" required>
+            <option value="" disabled selected>선택해 주세요</option>
+            <option value="광고/스폰서십">광고 / 스폰서십</option>
+            <option value="콘텐츠 제휴">콘텐츠 제휴</option>
+            <option value="입점/등록 제안">입점 / 등록 제안</option>
+            <option value="공동 마케팅">공동 마케팅</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>문의 내용 <span class="required">*</span></label>
+          <textarea name="message" placeholder="제휴 목적, 제안 내용, 예산 등을 자유롭게 작성해 주세요." required></textarea>
+        </div>
+
+        <!-- Formspree 스팸 방지 -->
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_subject" value="[Bite Palette] 새 제휴 문의가 도착했습니다">
+
+        <button type="submit" class="submit-btn" id="submitBtn">문의 보내기 ✉️</button>
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        ✅ 문의가 성공적으로 전송되었습니다!<br>
+        빠른 시일 내에 답변 드리겠습니다.
+      </div>
+
+      <p class="notice">
+        보내주신 정보는 제휴 검토 목적으로만 사용되며<br>
+        제3자에게 제공되지 않습니다.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // 테마 토글
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('lottoTheme') || 'dark';
+    if (savedTheme === 'light') {
+      document.body.classList.add('light');
+      themeToggle.textContent = '☀️';
+    }
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.classList.toggle('light');
+      themeToggle.textContent = isLight ? '☀️' : '🌙';
+      localStorage.setItem('lottoTheme', isLight ? 'light' : 'dark');
+    });
+
+    // 폼 제출 (AJAX)
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = '전송 중...';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.classList.add('show');
+        } else {
+          alert('전송에 실패했습니다. 잠시 후 다시 시도해 주세요.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = '문의 보내기 ✉️';
+        }
+      } catch {
+        alert('네트워크 오류가 발생했습니다.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = '문의 보내기 ✉️';
+      }
+    });
+  </script>
+</body>
+</html>
