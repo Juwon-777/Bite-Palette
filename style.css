@@ -1,23 +1,266 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: #fff;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+header {
   text-align: center;
+  padding: 30px 0 20px;
 }
 
-#lotto-numbers {
+header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+  margin-top: 8px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.95rem;
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+/* 게임 수 선택 */
+.round-select {
+  margin-bottom: 20px;
+}
+
+.round-select label {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 10px;
+}
+
+.round-buttons {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  gap: 8px;
 }
 
-.lotto-number {
-  width: 50px;
-  height: 50px;
+.round-btn {
+  flex: 1;
+  padding: 8px 0;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.round-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.round-btn.active {
+  background: linear-gradient(135deg, #f7b731, #f0932b);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* 결과 영역 */
+#result-area {
+  min-height: 60px;
+  margin-bottom: 20px;
+}
+
+.game-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.game-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  min-width: 36px;
+}
+
+.balls-wrap {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 번호 공 */
+.ball {
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background-color: #f0f0f0;
-  margin: 5px;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+.ball:hover {
+  transform: scale(1.1);
+}
+
+.ball-yellow { background: linear-gradient(135deg, #f9ca24, #f0932b); color: #fff; }
+.ball-blue   { background: linear-gradient(135deg, #4fc3f7, #0288d1); color: #fff; }
+.ball-red    { background: linear-gradient(135deg, #ef5350, #c62828); color: #fff; }
+.ball-gray   { background: linear-gradient(135deg, #90a4ae, #546e7a); color: #fff; }
+.ball-green  { background: linear-gradient(135deg, #66bb6a, #2e7d32); color: #fff; }
+
+/* 공 등장 애니메이션 */
+@keyframes popIn {
+  0%   { transform: scale(0) rotate(-180deg); opacity: 0; }
+  70%  { transform: scale(1.15) rotate(10deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.ball.animate {
+  animation: popIn 0.4s ease forwards;
+  opacity: 0;
+}
+
+/* 생성 버튼 */
+.generate-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+}
+
+.generate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(108, 92, 231, 0.55);
+}
+
+.generate-btn:active {
+  transform: translateY(0);
+}
+
+.btn-icon {
+  font-size: 1rem;
+}
+
+/* 저장 기록 */
+.history-card h2 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.clear-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 82, 82, 0.3);
+  color: #fff;
+}
+
+.history-entry {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.history-entry:last-child {
+  border-bottom: none;
+}
+
+.history-date {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 8px;
+}
+
+.history-balls {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.history-balls .ball {
+  width: 36px;
+  height: 36px;
+  font-size: 0.8rem;
+}
+
+.empty-msg {
+  text-align: center;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.9rem;
+  padding: 10px 0;
+}
+
+/* 범례 */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 0 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.legend-item .ball {
+  width: 28px;
+  height: 28px;
+  font-size: 0.7rem;
+}
+
+@media (max-width: 480px) {
+  header h1 { font-size: 1.6rem; }
+  .ball { width: 40px; height: 40px; font-size: 0.9rem; }
+  .balls-wrap { gap: 6px; }
 }
